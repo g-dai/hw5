@@ -1,5 +1,3 @@
-//struggling with how to incorporate xSpeed...
-
 var x = 210;
 var y = 290;
 var r = 0;
