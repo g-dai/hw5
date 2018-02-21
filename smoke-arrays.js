@@ -6,14 +6,19 @@ var r = 0;
 
 var X = [];
 var Y = [];
+var R = [];
 var xSpeed = [];
+var ySpeed = [];
 
 function setup() {
   createCanvas(400, 400);
   
-  for (var i = 0; i < 100; i++) {
-    Y[i] = -10;
-    xSpeed = random(1,3);
+  for (var i = 0; i < 200; i++) {
+    X[i] = 210;
+    Y[i] = 290;
+    R[i] = random(0.05,0.1);
+    xSpeed[i] = random(-0.5,0.5);
+    ySpeed[i] = random(-1,0.1);
   }
 }
   
@@ -26,23 +31,26 @@ function draw() {
   rect(195, height, 30, -100);
 
   // darker as it gets closer to 0
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 200; i++) {
     push();
-    fill(y);
-    translate(x, y);
-    rotate(r);
-    rect(-10, Y[i], 20, 20);
+    fill(Y[i]);
+    translate(X[i], Y[i]);
+    rotate(R[i]);
+    rect(-10, -10, 20, 20);
     pop();
     
     // up 3 pixels
-    y -= 3;
-  }
+    Y[i] -= 3;
+    X[i] += xSpeed[i];
+    Y[i] += ySpeed[i];
 
     // rotate 0.05 radians ~= 2.8 degrees per frame
-    r += 0.05
+    R[i] += 0.05;
 
     // if reach past the top a bunch
-    if (y < -150) {
-      y = 290;
+    if (Y[i] < -150) {
+      Y[i] = 290;
+      X[i] = 210;
+    }
   }
 }
